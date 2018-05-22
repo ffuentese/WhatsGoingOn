@@ -25,7 +25,7 @@ var YOUTUBE_SEARCH_URL = 'https://www.googleapis.com/youtube/v3/videos';
 
 function getDataFromApiYT(searchTerm, callback){
 	var query = {'key': YT,
-				 'maxResults': '10',
+				 'maxResults': '12',
                  'part': 'id,snippet',
                  'chart': 'mostPopular',
                  'regionCode': searchTerm,
@@ -37,10 +37,10 @@ function getDataFromApiYT(searchTerm, callback){
 function renderResultYT(result) {
 	
   return `
-    <div id="video">
+    <div id="video" class="col-4">
       <h3>
       <a class="js-result-name" href="https://www.youtube.com/watch?v=${result.id}" target="_blank">${result.snippet.title}</a> by <a class="js-video-channel" target="_blank" href="https://www.youtube.com/channel/${result.snippet.channelId}" target="_blank">${result.snippet.channelTitle}</a></h3>
-      <p>: <span class="js-thumbnail-video"><a href="https://www.youtube.com/watch?v=${result.id}" target="_blank"><img src="${result.snippet.thumbnails.default.url}" alt="${result.snippet.title}" /></a></span></p>
+      <p>: <span class="js-thumbnail-video"><a href="https://www.youtube.com/watch?v=${result.id}" target="_blank"><img src="${result.snippet.thumbnails.medium.url}" alt="${result.snippet.title}" class="picture"/></a></span></p>
       
     </div>
   `;
@@ -75,7 +75,11 @@ function getDataFromApiWP(country, callback){
 }
 
 function renderResultWP(result) {
-	
+	var name = result.title;
+	var arr = name.split(' ');
+	name = arr.join('_');
+	var url = 'http://en.wikipedia.org/wiki/'+name;
+	console.log(url);
   return `
     <div id="wikipedia">
       
@@ -84,6 +88,7 @@ function renderResultWP(result) {
       <span class="wikipedia-text">
       ${result.extract}
       </span>
+      <p><a href="${url}" target="_blank">Read more...</a></p>
       
     </div>
   `;
@@ -111,7 +116,7 @@ function getDataFromAPINews(country, callback){
 				'language' : 'en',
 				'sortBy': 'relevancy',
 				'from' : date.toISOString(),
-				'pageSize': 10,
+				'pageSize': 8,
 				'domains' : domains
 	};
 	$.getJSON(NEWS_URL, query, callback);
@@ -122,11 +127,15 @@ function renderResultNews(result){
 	var pubDate = rd.getDate() + "-" + (rd.getMonth()+1) + "-" + rd.getFullYear() + " "
 	+ rd.getHours() + ":" + rd.getMinutes();
 	return `
-		<article>
+		<article class="col-3">
+		<div id="news">
 			<h3><a href="${result.url}" target="_blank">${result.title}</a></h3>
-			<p><img src="${result.urlToImage}" alt="${result.title}" /></p>
+			 <p>
+			 <img src="${result.urlToImage}" alt="${result.title}" class="picture" />
+			</p> 
 			<p><small>${result.source.name} published ${pubDate}</small></p>
 			<p>${result.description}</p>
+		</div>
 		</article>
 	`;
 }
@@ -147,7 +156,7 @@ function getDataFromApiLastFM(country_code, callback){
 				  'method' : 'geo.gettopartists',
 				  'format': 'json',
 				  'country': country_code,
-				  'limit': 10
+				  'limit': 12
 	};
 	$.getJSON(LASTFM_URL,query,callback);
 }
@@ -155,8 +164,8 @@ function getDataFromApiLastFM(country_code, callback){
 function renderResultLastFM(result){
 	console.log(result);
 	return `
-	<div id="artist">
-		<p><img src="${result.image[3]['#text']}" alt="${result.name}"</p>
+	<div id="artist" class="col-4">
+		<p><a href="${result.url}"><img src="${result.image[3]['#text']}" alt="${result.name}" class="picture"/></a></p>
 		<h3><a href="${result.url}">${result.name}</a></h3>
 	</div>
 	`;
@@ -179,7 +188,7 @@ function getDataFromApiFlickr(country, callback){
 				  'tags' : country,
 				  'sort' : 'relevance',
 				  'format' : 'json',
-				   'per_page' : '4',
+				   'per_page' : '2',
 				  'nojsoncallback' : '1'
 	};
 	$.getJSON(FLICKR_URL, query, callback);
@@ -187,10 +196,11 @@ function getDataFromApiFlickr(country, callback){
 
 function renderResultFlickr(result){
 	console.log(result);
-	return `<article class="flickr-picture">
+	return `<article class="flickr-picture col-6">
 	<p>${result.title}</p>
-	<p><img src="https://farm${result.farm}.staticflickr.com/${result.server}/${result.id}_${result.secret}.jpg
-" alt="${result.title}" class="picture" /></p>
+	<p><a href="https://www.flickr.com/photos/${result.owner}/${result.id}/" title="${result.title}" target="_blank">
+	<img src="https://farm${result.farm}.staticflickr.com/${result.server}/${result.id}_${result.secret}.jpg
+" alt="${result.title}" class="picture" /></a></p>
 </article>
 	`;
 }
@@ -221,6 +231,7 @@ function handleCountryForm(){
 			$('.js-news h2').text("News from " + country);
 			$('.js-youtube h2').text("Popular videos in " + country);
 			$('.js-lastfm h2').text("Popular musicians in " +  country);
+			$('div.row').css("border-top","2px solid grey");
 
 		}
 	})

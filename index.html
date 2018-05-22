@@ -1,29 +1,54 @@
+<!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8">
 	<title>What's Going On!</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="What's Going On! Let's you know everything about other countries with just one click!">
+
+  <!-- Normalize.css, a cross-browser reset file -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.css" rel="stylesheet">
+
+  <!-- Google Font -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
+
+  <!-- Stylesheets -->
+
+  <link rel="stylesheet" type="text/css" href="css/float-grid.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
+	<main role="main">
+		<div class="container">
+	<div class="row">
 	<header>
 		<h1>What's Going ON!</h1>
 	</header>
-<div id="form">
-	<form id="myForm">
-	<fieldset >
-		<select name="country-list" class="js-query-dropdown">
-			
-		</select>
-		<input type="submit" value="Search">
-	</fieldset>
-	</form>
-</div>
-<div class="js-flickr"><h2></h2><section class="js-flickr-photos"></section></div>
-<div class="js-wikipedia"></div>
-<div class="js-news"><h2></h2><section class="js-news-articles"></section></div>
-<div class="js-lastfm"><h2></h2><section class="js-lastfm-artists"></section></div>
-<div class="js-youtube"><h2></h2><section class="js-youtube-videos"></section></div>
+	</div>
 
-<div></div>
-<div></div>
+<div class="row">	
+	<div id="form" class="col-12">
+		<form id="myForm">
+		<fieldset >
+			<select name="country-list" class="js-query-dropdown">
+				
+			</select>
+			<input type="submit" value="Search">
+		</fieldset>
+		</form>
+	</div>
+</div>
+<div class="js-flickr row"><h2></h2><section class="js-flickr-photos"></section></div>
+<div class="row"><div class="js-wikipedia col-12"></div></div>
+<div class="row"><div class="js-news"><h2></h2></div><section class="js-news-articles row"></section></div>
+
+
+<div class="row"><div class="js-lastfm"><h2></h2></div><section class="js-lastfm-artists row"></section></div>
+<div class="row"><div class="js-youtube"><h2></h2></div><section class="js-youtube-videos row"></section></div>
+</div>
+
+
+</main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="js/countries.js"></script>
 <script type="text/javascript" src="js/last.js"></script>

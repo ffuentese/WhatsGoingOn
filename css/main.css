@@ -1,0 +1,55 @@
+div {
+	background: #fff;
+	font-family: 'Open Sans', sans-serif;
+}
+
+
+main {
+	background:
+	radial-gradient(circle at 0% 50%, rgba(96, 16, 48, 0) 9px, #613 10px, rgba(96, 16, 48, 0) 11px) 0px 10px,
+	radial-gradient(at 100% 100%,      rgba(96, 16, 48, 0) 9px, #613 10px, rgba(96, 16, 48, 0) 11px),
+	#8a3;
+	background-size: 20px 20px;
+	min-height: 100vh;
+	
+	
+}
+
+div.container {
+	max-width: 1000px;
+	min-height: 100vh;
+	background-color: #fff;
+	margin: 0 auto;
+
+}
+
+
+
+
+fieldset {
+	border: 0;
+}
+
+fieldset select, input {
+	display: block;
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	height: 30px;
+
+}
+
+
+.picture {
+	max-width: calc(100% - 10px);
+	object-fit: scale-down;
+}
+
+#news {
+	height: 540px;
+	overflow: hidden;
+}
+
+#video {
+	height: 340px;
+}
