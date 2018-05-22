@@ -149,7 +149,7 @@ function displayQueryResultsNews(data){
 
 // Last FM 
 
-var LASTFM_URL = 'http://ws.audioscrobbler.com/2.0/';
+var LASTFM_URL = 'https://ws.audioscrobbler.com/2.0/';
 
 function getDataFromApiLastFM(country_code, callback){
 	var query = { 'api_key': LAST_FM,
