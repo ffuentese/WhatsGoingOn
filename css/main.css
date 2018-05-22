@@ -53,3 +53,7 @@ fieldset select, input {
 #video {
 	height: 340px;
 }
+
+.map {
+	text-align: center;
+}

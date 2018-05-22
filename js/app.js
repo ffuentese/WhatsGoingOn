@@ -165,8 +165,8 @@ function renderResultLastFM(result){
 	console.log(result);
 	return `
 	<div id="artist" class="col-4">
-		<p><a href="${result.url}"><img src="${result.image[3]['#text']}" alt="${result.name}" class="picture"/></a></p>
-		<h3><a href="${result.url}">${result.name}</a></h3>
+		<p><a href="${result.url}" target="_blank"><img src="${result.image[3]['#text']}" alt="${result.name}" class="picture"/></a></p>
+		<h3><a href="${result.url}" target="_blank">${result.name}</a></h3>
 	</div>
 	`;
 }
@@ -232,6 +232,19 @@ function handleCountryForm(){
 			$('.js-youtube h2').text("Popular videos in " + country);
 			$('.js-lastfm h2').text("Popular musicians in " +  country);
 			$('div.row').css("border-top","2px solid grey");
+			// Google Maps 
+			var map = '<a href="https://www.google.com/maps/dir//'+country+'/" target="_blank"> \
+			<picture>\
+			<source media="(min-width:640px)" srcset="https://maps.googleapis.com/maps/api/staticmap?center='+country+'&zoom=3&size=600x300&scale=1&key=AIzaSyBWX0t4iokYJAsgwnGuQ5zb9cLjv8p5KA8"\
+			 alt="'+country+'" class="picture" title="'+country+'">\
+			<img src="https://maps.googleapis.com/maps/api/staticmap?center='+country+'&zoom=3&size=300x300&scale=1&key=AIzaSyBWX0t4iokYJAsgwnGuQ5zb9cLjv8p5KA8"\
+			alt="'+country+'" class="picture" title="'+country+'">\
+			</picture>\
+			</a>';
+			$('.map').html(map);
+			$('.js-maps h2').text(country +" in a map");
+			$('.js-maps small').text("Click to see on Google Maps");
+			// 
 
 		}
 	})
