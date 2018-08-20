@@ -228,7 +228,7 @@ function handleCountryForm(){
 			getDataFromAPINews(country, displayQueryResultsNews);
 			getDataFromApiLastFM(country, displayQueryResultsLastFM);
 			$('.js-flickr h2').text("Pictures from " + country);
-			$('.js-news h2').text("News from " + country);
+			$('.js-news h2').text("News related to " + country);
 			$('.js-youtube h2').text("Popular videos in " + country);
 			$('.js-lastfm h2').text("Popular musicians in " +  country);
 			$('div.row').css("border-top","2px solid grey");
